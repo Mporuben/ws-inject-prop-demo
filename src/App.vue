@@ -1,29 +1,58 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+<div>
+
+  <PropCard>
+    <template v-slot:default="{isInputDisabledSlot}">
+      <PropForm :isInputDisabledSlot="isInputDisabledSlot">
+        <template v-slot:default="{isInputDisabledSlot}">
+          <PropInput :isInputDisabledSlot="isInputDisabledSlot" />
+        </template>
+      </PropForm>
+    </template>
+  </PropCard>
+
+  <InjectCard>
+    <InjectForm>
+      <InjectInput/>
+    </InjectForm>
+  </InjectCard>
+
+</div>
+
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+
+import InjectCard from './components/inject/InjectCard.vue';
+import InjectForm from './components/inject/InjectForm.vue';
+import InjectInput from './components/inject/InjectInput.vue';
+
+import PropCard from './components/props/PropCard.vue';
+import PropForm from './components/props/PropForm.vue';
+import PropInput from './components/props/PropInput.vue';
+
 
 @Component({
   components: {
-    HelloWorld,
+    InjectCard,
+    InjectForm,
+    InjectInput,
+    PropCard,
+    PropForm,
+    PropInput
   },
 })
 export default class App extends Vue {}
 </script>
 
 <style>
+body {
+  color: white;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
